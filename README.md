@@ -1,86 +1,4 @@
-# egg-wx
-
-[![NPM version][npm-image]][npm-url]
-
-[![build status][travis-image]][travis-url]
-
-[![Test coverage][codecov-image]][codecov-url]
-
-[![David deps][david-image]][david-url]
-
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/egg-wx.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-wx
-[travis-image]: https://img.shields.io/travis/eggjs/egg-wx.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-wx
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-wx.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-wx?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-wx.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-wx
-[snyk-url]: https://snyk.io/test/npm/egg-wx
-[download-image]: https://img.shields.io/npm/dm/egg-wx.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-wx
-
-
-
-# Install
-
-```
-$ npm i egg-wx --save
-$ npm install xml2js egg-redis --save
-```
-
-
-
-# Usage
-
-```
-// {app_root}/config/plugin.js
-exports.wx = {
-  enable: true,
-  package: 'egg-wx',
-};
-```
-
-
-
-# Configuration
-
-```javascript
-// {app_root}/config/config.default.js
-config.bodyParser = {
-  extendTypes: {
-    text: [ 'application/xml', 'text/xml', 'text/html' ],
-  },
-  enableTypes: [ 'text' ],
-};
-
-config.wx = {
-  redisClient: '', // Set this if used Multi Clients
-  redisPrefix: 'egg-wx',
-  AppID: 'appid',
-  AppSecret: 'app_secret',
-  token: 'egg-wx',
-  EncodingAESKey: 'EncodingAESKey',
-};
-```
-
-see https://mp.weixin.qq.com/wiki for more detail
-
-
-
-# Example
-
-```javascript
-async index() {
-    ctx.body = await app.wx.apiCommon.getAccessToken();
-}
-```
-
-
-
-# Classes
+## Classes
 
 <dl>
 <dt><a href="#ApiCommon">ApiCommon</a></dt>
@@ -338,6 +256,14 @@ POST
 jssdk接口
 
 **Kind**: global class  
+
+* [ApiJssdk](#ApiJssdk)
+    * [.getRedisCache()](#ApiJssdk+getRedisCache) ⇒ <code>object</code>
+    * [.getJsapiTicket()](#ApiJssdk+getJsapiTicket) ⇒ <code>object</code>
+    * [.getJsapiTicketFromApi(accessToken)](#ApiJssdk+getJsapiTicketFromApi) ⇒ <code>object</code>
+    * [.getSign(url, nonce, timestamp)](#ApiJssdk+getSign) ⇒ <code>object</code>
+    * [.getJsapiConfig(url)](#ApiJssdk+getJsapiConfig) ⇒ <code>object</code>
+
 <a name="ApiJssdk+getRedisCache"></a>
 
 ### apiJssdk.getRedisCache() ⇒ <code>object</code>
@@ -345,6 +271,51 @@ jssdk接口
 
 **Kind**: instance method of [<code>ApiJssdk</code>](#ApiJssdk)  
 **Returns**: <code>object</code> - redis对象  
+<a name="ApiJssdk+getJsapiTicket"></a>
+
+### apiJssdk.getJsapiTicket() ⇒ <code>object</code>
+返回jsapi ticket对象,缓存读取
+
+**Kind**: instance method of [<code>ApiJssdk</code>](#ApiJssdk)  
+**Returns**: <code>object</code> - ticket对象  
+<a name="ApiJssdk+getJsapiTicketFromApi"></a>
+
+### apiJssdk.getJsapiTicketFromApi(accessToken) ⇒ <code>object</code>
+返回jsapi ticket对象,接口返回
+
+**Kind**: instance method of [<code>ApiJssdk</code>](#ApiJssdk)  
+**Returns**: <code>object</code> - ticket对象  
+
+| Param | Type |
+| --- | --- |
+| accessToken | <code>string</code> | 
+
+<a name="ApiJssdk+getSign"></a>
+
+### apiJssdk.getSign(url, nonce, timestamp) ⇒ <code>object</code>
+返回签名
+
+**Kind**: instance method of [<code>ApiJssdk</code>](#ApiJssdk)  
+**Returns**: <code>object</code> - 返回签名  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 授权网站 |
+| nonce | <code>string</code> | 随机字符 |
+| timestamp | <code>string</code> | 时间戳 |
+
+<a name="ApiJssdk+getJsapiConfig"></a>
+
+### apiJssdk.getJsapiConfig(url) ⇒ <code>object</code>
+返回jssdk参数
+
+**Kind**: instance method of [<code>ApiJssdk</code>](#ApiJssdk)  
+**Returns**: <code>object</code> - 前端jssdk配置参数对象 {appId, timestamp, nonceStr, signature}  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 授权网站 |
+
 <a name="ApiMenu"></a>
 
 ## ApiMenu
