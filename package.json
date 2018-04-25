@@ -1,6 +1,6 @@
 {
   "name": "egg-wx",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "eggPlugin": {
     "name": "wx",
@@ -50,12 +50,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-wx.git"
+    "url": "git+https://github.com/Dess-Li/egg-wx"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/Dess-Li/egg-wx/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-wx#readme",
+  "homepage": "https://github.com/Dess-Li/egg-wx#readme",
   "author": "DessLi",
   "license": "MIT"
 }
