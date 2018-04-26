@@ -1,3 +1,84 @@
+# egg-wx
+
+[![NPM version][npm-image]][npm-url]
+
+[![build status][travis-image]][travis-url]
+
+[![Test coverage][codecov-image]][codecov-url]
+
+[![David deps][david-image]][david-url]
+
+[![npm download][download-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/egg-wx.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/egg-wx
+[travis-image]: https://img.shields.io/travis/eggjs/egg-wx.svg?style=flat-square
+[travis-url]: https://travis-ci.org/eggjs/egg-wx
+[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-wx.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/eggjs/egg-wx?branch=master
+[david-image]: https://img.shields.io/david/eggjs/egg-wx.svg?style=flat-square
+[david-url]: https://david-dm.org/eggjs/egg-wx
+[snyk-url]: https://snyk.io/test/npm/egg-wx
+[download-image]: https://img.shields.io/npm/dm/egg-wx.svg?style=flat-square
+[download-url]: https://npmjs.org/package/egg-wx
+
+
+
+# Install
+
+```
+$ npm i egg-wx --save
+$ npm install xml2js egg-redis --save
+```
+
+
+
+# Usage
+
+```
+// {app_root}/config/plugin.js
+exports.wx = {
+  enable: true,
+  package: 'egg-wx',
+};
+```
+
+
+
+# Configuration
+
+```javascript
+// {app_root}/config/config.default.js
+config.bodyParser = {
+  extendTypes: {
+    text: [ 'application/xml', 'text/xml', 'text/html' ],
+  },
+  enableTypes: [ 'text' ],
+};
+
+config.wx = {
+  redisClient: '', // Set this if used Multi Clients
+  redisPrefix: 'egg-wx',
+  AppID: 'appid',
+  AppSecret: 'app_secret',
+  token: 'egg-wx',
+  EncodingAESKey: 'EncodingAESKey',
+};
+```
+
+see https://mp.weixin.qq.com/wiki for more detail
+
+
+
+# Example
+
+```javascript
+async index() {
+    ctx.body = await app.wx.apiCommon.getAccessToken();
+}
+```
+
+
 ## Classes
 
 <dl>
@@ -16,8 +97,14 @@
 <dt><a href="#ApiMessage">ApiMessage</a></dt>
 <dd><p>消息接口</p>
 </dd>
+<dt><a href="#ApiQRCode">ApiQRCode</a></dt>
+<dd><p>qrcode接口</p>
+</dd>
 <dt><a href="#ApiServer">ApiServer</a></dt>
 <dd><p>服务器验证接口</p>
+</dd>
+<dt><a href="#ApiShortUrl">ApiShortUrl</a></dt>
+<dd><p>ShortUrl接口</p>
 </dd>
 <dt><a href="#ApiWebAuth">ApiWebAuth</a></dt>
 <dd><p>用户授权接口</p>
@@ -286,9 +373,9 @@ jssdk接口
 **Kind**: instance method of [<code>ApiJssdk</code>](#ApiJssdk)  
 **Returns**: <code>object</code> - ticket对象  
 
-| Param | Type |
-| --- | --- |
-| accessToken | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| accessToken | <code>string</code> | access-token |
 
 <a name="ApiJssdk+getSign"></a>
 
@@ -488,6 +575,26 @@ jssdk接口
 | nonce | <code>string</code> | 随机字符串 |
 | encryptText | <code>string</code> | 加密密文 |
 
+<a name="ApiQRCode"></a>
+
+## ApiQRCode
+qrcode接口
+
+**Kind**: global class  
+<a name="ApiQRCode+createQRCode"></a>
+
+### apiQRCode.createQRCode(type, sceneValue, expire_seconds) ⇒ <code>object</code>
+生成二维码
+
+**Kind**: instance method of [<code>ApiQRCode</code>](#ApiQRCode)  
+**Returns**: <code>object</code> - 二维码值  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| type | <code>string</code> |  | 二维码类型 |
+| sceneValue | <code>string/integer</code> |  | 场景值 |
+| expire_seconds | <code>integer</code> | <code>30</code> | 超时时间 |
+
 <a name="ApiServer"></a>
 
 ## ApiServer
@@ -505,6 +612,24 @@ jssdk接口
 | Param | Type | Description |
 | --- | --- | --- |
 | ctx | <code>object</code> | 上下文对象 |
+
+<a name="ApiShortUrl"></a>
+
+## ApiShortUrl
+ShortUrl接口
+
+**Kind**: global class  
+<a name="ApiShortUrl+createShortUrl"></a>
+
+### apiShortUrl.createShortUrl(longurl) ⇒ <code>object</code>
+生成二维码
+
+**Kind**: instance method of [<code>ApiShortUrl</code>](#ApiShortUrl)  
+**Returns**: <code>object</code> - 短连接  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| longurl | <code>string</code> | 长连接 |
 
 <a name="ApiWebAuth"></a>
 

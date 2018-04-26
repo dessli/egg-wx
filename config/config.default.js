@@ -28,5 +28,7 @@ exports.wx = {
     deleteCustomservice: '/customservice/kfaccount/del', // access_token=ACCESS_TOKEN
     getCustomserviceList: '/cgi-bin/customservice/getkflist', // access_token=ACCESS_TOKEN
     messageTemplateSend: '/cgi-bin/message/template/send', // access_token=ACCESS_TOKEN
+    createQRCode: '/cgi-bin/qrcode/create', // access_token=TOKEN
+    createShortUrl: '/cgi-bin/shorturl', // access_token=ACCESS_TOKEN
   },
 };
