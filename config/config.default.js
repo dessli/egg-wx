@@ -10,6 +10,8 @@ exports.wx = {
   redisPrefix: 'egg-wx',
   AppID: 'appid',
   AppSecret: 'app_secret',
+  MiniAppID: 'mini_appid',
+  MiniAppSecret: 'mini_app_secret',
   token: 'egg-wx',
   EncodingAESKey: 'EncodingAESKey',
   apiBaseUrl: 'https://api.weixin.qq.com',
@@ -30,5 +32,6 @@ exports.wx = {
     messageTemplateSend: '/cgi-bin/message/template/send', // access_token=ACCESS_TOKEN
     createQRCode: '/cgi-bin/qrcode/create', // access_token=TOKEN
     createShortUrl: '/cgi-bin/shorturl', // access_token=ACCESS_TOKEN
+    getMiniProgramSession: '/sns/jscode2session', // appid=APPID secret=SECRET js_code=CODE grant_type=authorization_code
   },
 };

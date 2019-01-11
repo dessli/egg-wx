@@ -61,6 +61,8 @@ config.wx = {
   redisPrefix: 'egg-wx',
   AppID: 'appid',
   AppSecret: 'app_secret',
+  MiniAppID: 'mini_appid', // wechat mini program app id
+  MiniAppSecret: 'mini_app_secret', // wechat mini program app secret
   token: 'egg-wx',
   EncodingAESKey: 'EncodingAESKey',
 };
@@ -96,6 +98,9 @@ async index() {
 </dd>
 <dt><a href="#ApiMessage">ApiMessage</a></dt>
 <dd><p>消息接口</p>
+</dd>
+<dt><a href="#ApiMiniProgramSession">ApiMiniProgramSession</a></dt>
+<dd><p>小程序获取用户Session接口</p>
 </dd>
 <dt><a href="#ApiQRCode">ApiQRCode</a></dt>
 <dd><p>qrcode接口</p>
@@ -574,6 +579,24 @@ jssdk接口
 | timestamp | <code>string/integer</code> | unix(10)时间戳 |
 | nonce | <code>string</code> | 随机字符串 |
 | encryptText | <code>string</code> | 加密密文 |
+
+<a name="ApiMiniProgramSession"></a>
+
+## ApiMiniProgramSession
+小程序获取用户Session接口
+
+**Kind**: global class  
+<a name="ApiMiniProgramSession+getSession"></a>
+
+### apiMiniProgramSession.getSession(js_code) ⇒ <code>object</code>
+小程序通过code获取用户Session
+
+**Kind**: instance method of [<code>ApiMiniProgramSession</code>](#ApiMiniProgramSession)  
+**Returns**: <code>object</code> - jscode2session数据  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| js_code | <code>\*</code> | 授权code |
 
 <a name="ApiQRCode"></a>
 
