@@ -33,5 +33,6 @@ exports.wx = {
     createQRCode: '/cgi-bin/qrcode/create', // access_token=TOKEN
     createShortUrl: '/cgi-bin/shorturl', // access_token=ACCESS_TOKEN
     getMiniProgramSession: '/sns/jscode2session', // appid=APPID secret=SECRET js_code=CODE grant_type=authorization_code
+    getPayUnifiedorder: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
   },
 };
